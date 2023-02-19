@@ -1,0 +1,97 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- ******************************** -->
+    <!-- *** BEGIN TABLE DECLARATIONS *** -->
+    <!-- ******************************** -->
+
+    <changeSet
+            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
+            author="Eric.Costa"
+            id="xptotracking_ms_data_ddl_1_0_0-REV-001">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="tg_data" />
+            </not>
+        </preConditions>
+
+        <createTable tableName="tg_data">
+            <column name="tg_data_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"
+                             primaryKeyName="tg_data_pk" />
+            </column>
+            <column name="data_hora" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+            </column>
+
+        </createTable>
+
+        <rollback />
+
+    </changeSet>
+
+    <changeSet
+            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
+            author="Eric.Costa"
+            id="xptotracking_ms_data_ddl_1_0_0-REV-002">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="geo_data" />
+            </not>
+        </preConditions>
+
+        <createTable tableName="geo_data">
+            <column name="latitude" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="longitude" type="double">
+                <constraints nullable="false" />
+            </column>
+            <column name="altimeter" type="double">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+
+        <rollback />
+
+    </changeSet>
+
+    <changeSet
+            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
+            author="Eric.Costa"
+            id="xptotracking_ms_data_ddl_1_0_0-REV-003">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="telemetry_data" />
+            </not>
+        </preConditions>
+
+        <createTable tableName="telemetry_data">
+            <column name="type" type="VARCHAR(20 BYTE)">
+                <constraints nullable="false" />
+            </column>
+            <column name="value" type="double">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <rollback />
+
+    </changeSet>
+
+
+    <!-- ******************************** -->
+    <!-- *** END TABLE DECLARATIONS *** -->
+    <!-- ******************************** -->
+
+    <!-- ******************************** -->
+    <!-- *** BEGIN TABLE CONSTRAINTS *** -->
+    <!-- ******************************** -->
+
+</databaseChangeLog>
