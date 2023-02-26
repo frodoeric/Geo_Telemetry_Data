@@ -57,7 +57,7 @@ paths:
               schema:
                 $ref: '../commons.yml#/components/schemas/ErrorResponse'
         409:
-          description: There is already a sensor registered with same name or mail
+          description: There is already a vehicle registered with same name or mail
           content:
             application/json:
               schema:
@@ -103,7 +103,7 @@ paths:
               schema:
                 $ref: '../commons.yml#/components/schemas/ErrorResponse'
 
-  /sensors/{vehicleId}:
+  /vehicles/{vehicleId}:
     put:
       tags:
         - Vehicle
@@ -252,7 +252,7 @@ paths:
               schema:
                 $ref: '../commons.yml#/components/schemas/ErrorResponse'
         409:
-          description: Delete a sensor that has vehicles is not allowed.
+          description: Delete a vehicle that has vehicles is not allowed.
           content:
             application/json:
               schema:
