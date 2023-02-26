@@ -5,17 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <changeSet logicalFilePath="db/changelog/revision/xptotracking_ms_data_dml_1_0_0.xml" author="Eric.Costa" id="xptotracking_ms_data_dml_0_1_0-REV-001_DATA">
-        <insert tableName="tg_data">
+        <insert tableName="vehicle">
             <column name="tg_data_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
-        </insert>
-        <insert tableName="geo_data">
-            <column name="longitude" value="3.98" />
-            <column name="latitude" value="4.32" />
-            <column name="altimeter" value="8.88" />
-        </insert>
-        <insert tableName="telemetry_data">
-            <column name="type" value="RPM" />
-            <column name="value" value="5000" />
+            <column name="customer_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+            <column name="telemetryProfile_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+            <column name="driver_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
+            <column name="numberPlate" value="123-xyz" />
+            <column name="color" value="blue" />
         </insert>
     </changeSet>
 

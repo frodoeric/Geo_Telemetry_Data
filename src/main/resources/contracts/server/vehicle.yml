@@ -1,0 +1,371 @@
+openapi: 3.0.3
+
+info:
+  title: IPL Tracking - Microservice API
+  description: API description for Tracking microservice.
+  version: 1.0.0
+
+tags:
+  - name: Vehicle
+    description: Vehicle definition
+
+servers:
+  - url: http://localhost:8080/tracking
+    description: Localhost - IPL Tracking DEV
+
+# ======= Endpoints =======
+
+paths:
+  /sensors:
+    post:
+      tags:
+        - Vehicle
+      summary: Create new Vehicle
+      #security:
+      #  - basicAuth: [ ]
+      description: This operation is usedto create a new Vehicle on System.
+      operationId: createVehicle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVehicleRequest'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVehicleResponse'
+        400:
+          description: Parameters missing in request
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        409:
+          description: There is already a sensor registered with same name or mail
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Unexpected errors not mapped to status codes mentioned above
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - Vehicle
+      summary: Get Vehicles list
+      #security:
+      #  - basicAuth: [ ]
+      description: This operation is used to retrieve a list of Vehicles.
+      operationId: listVehicles
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVehiclesResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Unexpected errors not mapped to status codes mentioned above
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+
+  /sensors/{sensorId}:
+    put:
+      tags:
+        - Vehicle
+      summary: Update Vehicle's attributes
+      #security:
+      #  - basicAuth: [ ]
+      description: This operation is used to update some of the Vehicle's attributes.
+      operationId: updateVehicle
+      parameters:
+        - name: sensorId
+          in: path
+          schema:
+            $ref: '../commons.yml#/components/schemas/UUID'
+          required: true
+          description: Unique identifier of the Vehicle in the database
+          example: 0af401df-7d7a-1f36-817d-7b0a058d0003
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVehicleRequest'
+        required: true
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Parameters missing in request or request is malformed. For example, the mail is not in the correct format.
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        409:
+          description: There is already a Vehicle registered with same name or email
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Unexpected errors not mapped to status codes mentioned above
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - Vehicle
+      summary: Get a single Vehicle's info
+      #security:
+      #  - basicAuth: [ ]
+      description: This operation is used to retrieve the details of a specific device.
+      operationId: getVehicle
+      parameters:
+        - name: sensorId
+          in: path
+          schema:
+            $ref: '../commons.yml#/components/schemas/UUID'
+          required: true
+          description: Unique identifier of the Vehicle in the database
+          example: 0af401df-7d7a-1f36-817d-7b0a058d0003
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVehicleResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Unexpected errors not mapped to status codes mentioned above
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Vehicle
+      summary: Delete Vehicle
+      #security:
+      #  - basicAuth: [ ]
+      description: This operation is delete a Vehicle.
+      operationId: deleteVehicle
+      parameters:
+        - name: sensorId
+          in: path
+          schema:
+            $ref: '../commons.yml#/components/schemas/UUID'
+          required: true
+          description: Unique identifier of the Vehicle in the database
+          example: 0af401df-7d7a-1f36-817d-7b0a058d0003
+      responses:
+        204:
+          description: No Content
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        409:
+          description: Delete a sensor that has vehicles is not allowed.
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+        500:
+          description: Unexpected errors not mapped to status codes mentioned above
+          content:
+            application/json:
+              schema:
+                $ref: '../commons.yml#/components/schemas/ErrorResponse'
+
+
+# ======= DTOs =======
+
+### general comment - each field needs to be described also, what it's for, what format is expected
+
+
+components:
+
+  schemas:
+
+    GetVehicleResponse:
+      type: object
+      properties:
+        vehicleId:
+          description: unique identifier of the Vehicle in the database
+          $ref: '../commons.yml#/components/schemas/UUID'
+        name:
+          type: string
+          description: Complete Vehicle name
+          example: Foo bar
+        sensor_type:
+          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
+        minValue:
+          type: number
+          description: Min value allowed
+          example: 0.0
+        maxValue:
+          type: number
+          description: Max value allowed
+          example: 255.0
+        unit:
+          type: string
+          description: Unit
+          example: Km/h
+      required: [ sensorId, name, sensor_type, minValue, maxValue ]
+
+
+    CreateVehicleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Complete Vehicle name
+          example: Foo bar
+        sensor_type:
+          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
+        minValue:
+          type: number
+          description: Min value allowed
+          example: 0.0
+        maxValue:
+          type: number
+          description: Max value allowed
+          example: 255.0
+        unit:
+          type: string
+          description: Unit
+          example: Km/h
+      required: [ name, sensor_type, minValue, maxValue ]
+
+    CreateVehicleResponse:
+      type: object
+      properties:
+        sensorId:
+          description: unique identifier of the Vehicle in the database
+          $ref: '../commons.yml#/components/schemas/UUID'
+      required: [ sensorId ]
+
+    ListVehiclesResponse:
+      type: object
+      description: generic paged response
+      properties:
+        content:
+          type: array
+          description: list of paged items
+          items:
+            $ref: '#/components/schemas/GetVehicleResponse'
+        totalResults:
+          type: integer
+          format: int64
+          description: total number of records
+          example: 50
+      required: [ content, totalResults ]
+
+    UpdateVehicleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Complete Vehicle name
+          example: Foo bar
+        sensor_type:
+          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
+        minValue:
+          type: number
+          description: Min value allowed
+          example: 0.0
+        maxValue:
+          type: number
+          description: Max value allowed
+          example: 255.0
+        unit:
+          type: string
+          description: Unit
+          example: Km/h

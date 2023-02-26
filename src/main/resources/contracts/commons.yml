@@ -1,0 +1,61 @@
+openapi: 3.0.3
+
+info:
+  title: IPL Tracking - Microservice API
+  description: API description for Tracking microservice.
+  version: 1.0.0
+
+tags:
+  - name: Commons
+    description: Commons definition    
+
+
+paths: {}
+# ======= DTOs =======
+### general comment - each field needs to be described also, what it's for, what format is expected
+
+components:
+ 
+  schemas:
+  
+    EnumVehicleType:
+      description: type of Vehicle
+      type: string
+      enum:
+        - RPM
+        - ODOMETER
+        - SPEED
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Application error code
+          example: XYZ0001
+        type:
+          $ref: '#/components/schemas/ErrorTypeEnum'
+          description: Whether it is a technical or functional error
+        message:
+          type: string
+          description: Short error explanation
+          example: Unauthorized
+        details:
+          type: string
+          description: Short error detail
+          example: Parameter X has invalid value
+      required: [ errorCode, errorType, errorMessage ]
+
+    ErrorTypeEnum:
+      description: Error Type
+      type: string
+      enum:
+        - PERSISTENCE
+        - BUSINESS
+        - COMMUNICATION
+        - UNKNOWN
+    
+    UUID:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+      example: 0af401df-7d7a-1f36-817d-7b0a058d0003

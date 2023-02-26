@@ -19,66 +19,27 @@
             </not>
         </preConditions>
 
-        <createTable tableName="tg_data">
+        <createTable tableName="vehicle">
             <column name="tg_data_id" type="UUID">
                 <constraints nullable="false" primaryKey="true"
                              primaryKeyName="tg_data_pk" />
             </column>
-            <column name="data_hora" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
-            </column>
-
-        </createTable>
-
-        <rollback />
-
-    </changeSet>
-
-    <changeSet
-            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
-            author="Eric.Costa"
-            id="xptotracking_ms_data_ddl_1_0_0-REV-002">
-
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="geo_data" />
-            </not>
-        </preConditions>
-
-        <createTable tableName="geo_data">
-            <column name="latitude" type="double">
+            <column name="customer_id" type="UUID">
                 <constraints nullable="false" />
             </column>
-            <column name="longitude" type="double">
+            <column name="telemetryProfile_id" type="UUID">
                 <constraints nullable="false" />
             </column>
-            <column name="altimeter" type="double">
+            <column name="driver_id" type="UUID">
                 <constraints nullable="false" />
             </column>
-
-        </createTable>
-
-        <rollback />
-
-    </changeSet>
-
-    <changeSet
-            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
-            author="Eric.Costa"
-            id="xptotracking_ms_data_ddl_1_0_0-REV-003">
-
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="telemetry_data" />
-            </not>
-        </preConditions>
-
-        <createTable tableName="telemetry_data">
-            <column name="type" type="VARCHAR(20 BYTE)">
+            <column name="numberPlate" type="VARCHAR(20 BYTE)">
                 <constraints nullable="false" />
             </column>
-            <column name="value" type="double">
-                <constraints nullable="false" />
+            <column name="color" type="VARCHAR(20 BYTE)">
+                <constraints nullable="true" />
             </column>
+
         </createTable>
 
         <rollback />
