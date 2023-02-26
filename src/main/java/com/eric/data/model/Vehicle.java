@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "vechicle")
+@Table(name = "vehicles")
 @lombok.Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,12 +32,12 @@ public class Vehicle implements IEntity<UUID> {
     @Column(name = "customer_id")
     private UUID customerId;
 
-    @Column(name = "telemetryProfile_id")
+    @Column(name = "telemetry_profile_id")
     private UUID telemetryProfileId;
 
     @Column(name = "driverId")
     private UUID driverId;
 
-    @Column(name = "numberPlate")
+    @Column(name = "number_plate")
     private String numberPlate;
 }

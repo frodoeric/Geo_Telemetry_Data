@@ -15,25 +15,25 @@
 
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="tg_data" />
+                <tableExists tableName="vehicles" />
             </not>
         </preConditions>
 
-        <createTable tableName="vehicle">
-            <column name="tg_data_id" type="UUID">
+        <createTable tableName="vehicles">
+            <column name="vehicle_id" type="UUID">
                 <constraints nullable="false" primaryKey="true"
                              primaryKeyName="tg_data_pk" />
             </column>
             <column name="customer_id" type="UUID">
                 <constraints nullable="false" />
             </column>
-            <column name="telemetryProfile_id" type="UUID">
+            <column name="telemetry_profile_id" type="UUID">
                 <constraints nullable="false" />
             </column>
             <column name="driver_id" type="UUID">
                 <constraints nullable="false" />
             </column>
-            <column name="numberPlate" type="VARCHAR(20 BYTE)">
+            <column name="number_plate" type="VARCHAR(20 BYTE)">
                 <constraints nullable="false" />
             </column>
             <column name="color" type="VARCHAR(20 BYTE)">

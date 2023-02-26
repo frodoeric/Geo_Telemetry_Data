@@ -1,17 +1,26 @@
 package com.eric.data.controller;
 
+import com.eric.data.mapper.MapperDtoEntity;
 import com.eric.data.openapi.api.VehiclesApi;
 import com.eric.data.openapi.model.*;
-import lombok.RequiredArgsConstructor;
+import com.eric.data.service.IVehicleService;
+import org.slf4j.MDC;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.NativeWebRequest;
 
-import java.util.Optional;
+import static com.eric.data.util.Constants.TRACE_ID;
+import static com.eric.data.util.Constants.X_TRACE_ID;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class VehicleController implements VehiclesApi {
+
+
+    private final IVehicleService service;
+    private final MapperDtoEntity mapper;
 
     @Override
     public ResponseEntity<CreateVehicleResponseDto> createVehicle(CreateVehicleRequestDto createVehicleRequestDto) {
@@ -31,7 +40,13 @@ public class VehicleController implements VehiclesApi {
     @Override
     public ResponseEntity<ListVehiclesResponseDto> listVehicles() {
 
-        return VehiclesApi.super.listVehicles();
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set(X_TRACE_ID, MDC.get(TRACE_ID));
+
+        ListVehiclesResponseDto responseDto = mapper.convertVehicleCollectionToListDTO(service.findAll());
+
+        return ResponseEntity.ok().headers(headers).body(responseDto);
     }
 
     @Override
