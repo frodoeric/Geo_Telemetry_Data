@@ -17,14 +17,6 @@ paths: {}
 components:
  
   schemas:
-  
-    EnumVehicleType:
-      description: type of Vehicle
-      type: string
-      enum:
-        - RPM
-        - ODOMETER
-        - SPEED
 
     ErrorResponse:
       type: object

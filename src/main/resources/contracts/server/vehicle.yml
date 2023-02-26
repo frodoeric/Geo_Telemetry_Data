@@ -16,14 +16,14 @@ servers:
 # ======= Endpoints =======
 
 paths:
-  /sensors:
+  /vehicles:
     post:
       tags:
         - Vehicle
       summary: Create new Vehicle
       #security:
       #  - basicAuth: [ ]
-      description: This operation is usedto create a new Vehicle on System.
+      description: This operation is used to create a new Vehicle on System.
       operationId: createVehicle
       requestBody:
         content:
@@ -103,7 +103,7 @@ paths:
               schema:
                 $ref: '../commons.yml#/components/schemas/ErrorResponse'
 
-  /sensors/{sensorId}:
+  /sensors/{vehicleId}:
     put:
       tags:
         - Vehicle
@@ -113,7 +113,7 @@ paths:
       description: This operation is used to update some of the Vehicle's attributes.
       operationId: updateVehicle
       parameters:
-        - name: sensorId
+        - name: vehicleId
           in: path
           schema:
             $ref: '../commons.yml#/components/schemas/UUID'
@@ -175,7 +175,7 @@ paths:
       description: This operation is used to retrieve the details of a specific device.
       operationId: getVehicle
       parameters:
-        - name: sensorId
+        - name: vehicleId
           in: path
           schema:
             $ref: '../commons.yml#/components/schemas/UUID'
@@ -223,7 +223,7 @@ paths:
       description: This operation is delete a Vehicle.
       operationId: deleteVehicle
       parameters:
-        - name: sensorId
+        - name: vehicleId
           in: path
           schema:
             $ref: '../commons.yml#/components/schemas/UUID'
@@ -278,59 +278,48 @@ components:
       type: object
       properties:
         vehicleId:
-          description: unique identifier of the Vehicle in the database
           $ref: '../commons.yml#/components/schemas/UUID'
-        name:
+        telemetryProfileId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        driverId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        numberPlate:
           type: string
-          description: Complete Vehicle name
-          example: Foo bar
-        sensor_type:
-          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
-        minValue:
-          type: number
-          description: Min value allowed
-          example: 0.0
-        maxValue:
-          type: number
-          description: Max value allowed
-          example: 255.0
-        unit:
+          description: Plate number
+          example: '123-XYZ'
+        color:
           type: string
-          description: Unit
-          example: Km/h
-      required: [ sensorId, name, sensor_type, minValue, maxValue ]
+          description: Car color
+          example: 'blue'
+      required: [ vehicleId, telemetryProfileId, driverId, numberPlate, color ]
 
 
     CreateVehicleRequest:
       type: object
       properties:
-        name:
+        customerId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        telemetryProfileId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        driverId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        numberPlate:
           type: string
-          description: Complete Vehicle name
-          example: Foo bar
-        sensor_type:
-          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
-        minValue:
-          type: number
-          description: Min value allowed
-          example: 0.0
-        maxValue:
-          type: number
-          description: Max value allowed
-          example: 255.0
-        unit:
+          description: Plate number
+          example: '123-XYZ'
+        color:
           type: string
-          description: Unit
-          example: Km/h
-      required: [ name, sensor_type, minValue, maxValue ]
+          description: Car color
+          example: 'blue'
+      required: [ customerId, telemetryProfileId, driverId, numberPlate, color ]
 
     CreateVehicleResponse:
       type: object
       properties:
-        sensorId:
+        vehicleId:
           description: unique identifier of the Vehicle in the database
           $ref: '../commons.yml#/components/schemas/UUID'
-      required: [ sensorId ]
+      required: [ vehicleId ]
 
     ListVehiclesResponse:
       type: object
@@ -351,21 +340,17 @@ components:
     UpdateVehicleRequest:
       type: object
       properties:
-        name:
+        customerId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        telemetryProfileId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        driverId:
+          $ref: '../commons.yml#/components/schemas/UUID'
+        numberPlate:
           type: string
-          description: Complete Vehicle name
-          example: Foo bar
-        sensor_type:
-          $ref: '../commons.yml#/components/schemas/EnumVehicleType'
-        minValue:
-          type: number
-          description: Min value allowed
-          example: 0.0
-        maxValue:
-          type: number
-          description: Max value allowed
-          example: 255.0
-        unit:
+          description: Plate number
+          example: '123-XYZ'
+        color:
           type: string
-          description: Unit
-          example: Km/h
+          description: Car color
+          example: 'blue'
