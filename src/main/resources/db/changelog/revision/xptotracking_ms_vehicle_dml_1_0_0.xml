@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet logicalFilePath="db/changelog/revision/xptotracking_ms_data_dml_1_0_0.xml" author="Eric.Costa" id="xptotracking_ms_data_dml_0_1_0-REV-001_DATA">
+    <changeSet logicalFilePath="db/changelog/revision/xptotracking_ms_vehicle_dml_1_0_0.xml" author="Eric.Costa" id="xptotracking_ms_vehicle_dml_0_1_0-REV-001_DATA">
         <insert tableName="vehicles">
             <column name="vehicle_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />
             <column name="customer_id" value="e8d6cede-e3dc-47c9-a61d-429f316c35cf" />

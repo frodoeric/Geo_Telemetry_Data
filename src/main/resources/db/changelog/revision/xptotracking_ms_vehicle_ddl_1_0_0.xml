@@ -9,9 +9,9 @@
     <!-- ******************************** -->
 
     <changeSet
-            logicalFilePath="db/changelog/revision/xptotracking_ms_data_ddl_1_0_0.xml"
+            logicalFilePath="db/changelog/revision/xptotracking_ms_vehicle_ddl_1_0_0.xml"
             author="Eric.Costa"
-            id="xptotracking_ms_data_ddl_1_0_0-REV-001">
+            id="xptotracking_ms_vehicle_ddl_1_0_0-REV-001">
 
         <preConditions onFail="MARK_RAN">
             <not>

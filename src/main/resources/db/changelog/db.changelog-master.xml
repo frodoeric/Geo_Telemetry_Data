@@ -6,11 +6,11 @@
     <!-- ******************
     **      DDL	       **
     ******************* -->
-    <include relativeToChangelogFile="true" file="revision/xptotracking_ms_data_ddl_1_0_0.xml"/>
+    <include relativeToChangelogFile="true" file="revision/xptotracking_ms_vehicle_ddl_1_0_0.xml"/>
 
     <!-- ******************
     **      DML	       **
     ******************* -->
-    <include relativeToChangelogFile="true" file="revision/xptotracking_ms_data_dml_1_0_0.xml"/>
+    <include relativeToChangelogFile="true" file="revision/xptotracking_ms_vehicle_dml_1_0_0.xml"/>
 
 </databaseChangeLog>
