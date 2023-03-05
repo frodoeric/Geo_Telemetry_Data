@@ -36,19 +36,17 @@ public interface MapperDtoEntity {
 	}
 
 
-	// DTO to Entity
-//	@Mapping(target = "id", ignore = true)
-//	@Mapping(source = "vehicles", target = "vehicles", qualifiedByName = "convertDTOArrayToCollection")
-//	Vehicle mapDtoToEntity(CreateVehicleRequestDto dto);
-//	@Mapping(target = "id", ignore = true)
-//	@Mapping(source = "vehicles", target = "vehicles", qualifiedByName = "convertDTOArrayToCollection")
-//	Vehicle mapDtoToEntity(UpdateVehicleRequestDto dto);
-
-
 	// Entity to DTO
 	@Mapping(source = "id", target = "vehicleId", qualifiedByName = "ConvertUUIDToString")
 	GetVehicleResponseDto mapEntityToDto(Vehicle entity);
-//	@Mapping(source = "id", target = "vehicleId", qualifiedByName = "ConvertUUIDToString")
-//	CreateVehicleResponseDto mapEntityToCreateResponseDto(Vehicle entity);
+
+	@Mapping(source = "id", target = "vehicleId", qualifiedByName = "ConvertUUIDToString")
+	CreateVehicleResponseDto mapEntityToPostResponseDto(Vehicle vehicle);
+
+	@Mapping(target = "id", ignore = true)
+	Vehicle mapDtoToCreatetEntity(CreateVehicleRequestDto dto);
+
+	@Mapping(target = "id", ignore = true)
+	Vehicle mapDtoToUpdateEntity(UpdateVehicleRequestDto dto);
 
 }

@@ -40,4 +40,7 @@ public class Vehicle implements IEntity<UUID> {
 
     @Column(name = "number_plate")
     private String numberPlate;
+
+    @Column(name = "color")
+    private String color;
 }
